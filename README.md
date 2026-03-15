@@ -1,1 +1,1 @@
-﻿# Spam-Email-Classifier-Using-ML
+﻿# Spam-Email-Classifier
