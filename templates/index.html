@@ -3,6 +3,7 @@
 <head>
 
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Spam Email Classifier</title>
 <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 
@@ -10,33 +11,63 @@
 
 <body>
 
-<div class="container">
+<main class="shell">
+	<section class="hero">
+		<span class="eyebrow">Flask + scikit-learn</span>
+		<h1>Spam Email Classifier</h1>
+		<p class="lead">An end-to-end machine learning project that classifies message text as spam or legitimate mail.</p>
 
-<h1>Spam Email Classifier</h1>
-<p>Paste an email message below to check if it is Spam or Not Spam</p>
+		<div class="feature-grid">
+			<div class="feature-card">
+				<strong>TF-IDF</strong>
+				<span>Text feature extraction</span>
+			</div>
+			<div class="feature-card">
+				<strong>Naive Bayes</strong>
+				<span>Fast text classification</span>
+			</div>
+			<div class="feature-card">
+				<strong>Flask UI</strong>
+				<span>Simple deployment layer</span>
+			</div>
+		</div>
 
-<form action="/predict" method="post">
+		<p class="hint">Try short promotional text, invoices, or personal messages to see the model in action.</p>
+	</section>
 
-<textarea 
-name="message" 
-placeholder="Enter your email message here..."
-required></textarea>
+	<section class="panel">
+		<div class="panel-header">
+			<h2>Check a message</h2>
+			<p>Paste an email or SMS-style message and get an instant prediction.</p>
+		</div>
 
-<br>
+		<form action="/predict" method="post" class="predict-form">
+			<label for="message">Message</label>
+			<textarea
+				id="message"
+				name="message"
+				placeholder="Enter your email message here..."
+				required>{{ message_value or '' }}</textarea>
 
-<button type="submit">Check Email</button>
+			<button type="submit">Analyze message</button>
+		</form>
 
-</form>
+		{% if prediction_text %}
+		<div class="result {{ result_class }}">
+			<h3>{{ prediction_text }}</h3>
+			{% if confidence_text %}
+			<p>{{ confidence_text }}</p>
+			{% endif %}
+		</div>
+		{% endif %}
 
-{% if prediction_text %}
-
-<div class="result">
-<h2>{{ prediction_text }}</h2>
-</div>
-
-{% endif %}
-
-</div>
+		{% if error_text %}
+		<div class="error">
+			<p>{{ error_text }}</p>
+		</div>
+		{% endif %}
+	</section>
+</main>
 
 </body>
 </html>
