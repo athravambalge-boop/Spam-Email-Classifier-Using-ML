@@ -88,11 +88,8 @@ Open:
 - App starts but shows a model error: confirm the `model/` directory contains the generated pickle files.
 - Wrong working directory: run commands from the folder that contains `app.py`.
 
-## Next Improvements that can be added
-
-- Add a hosted deployment link using Render, Railway, or Hugging Face Spaces.
-- Save a confusion matrix plot and include it in the README.
-- Add a small test suite for preprocessing and prediction.
+## Author
+ATHARVA PRASHANT AMBALGE
 
 ## License
 
